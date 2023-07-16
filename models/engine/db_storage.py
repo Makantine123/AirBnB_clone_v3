@@ -3,6 +3,7 @@
 Contains the class DBStorage
 """
 
+from sqlalchemy.exc import NoResultFound
 import models
 from models.amenity import Amenity
 from models.base_model import BaseModel, Base
@@ -74,3 +75,20 @@ class DBStorage:
     def close(self):
         """call remove() method on the private session attribute"""
         self.__session.remove()
+
+    def get(self, cls, id):
+        """Returns the object based on the class and its ID or None if
+        not found"""
+        try:
+            obj = self.__session.query(cls).filter(cls.id == id)
+            return obj
+        except NoResultFound:
+            return None
+
+    def count(self, cls=None):
+        """Returns the number of objects in storage matching the class
+        else the total number of objects if the cls is None"""
+        if cls is None:
+            return len(self.all())
+        else:
+            return len(self.all(cls))
