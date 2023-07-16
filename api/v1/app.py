@@ -16,6 +16,7 @@ def teardown_db(self):
     """Registers a function to be called when the application context ends."""
     storage.close()
 
+
 if __name__ == '__main__':
     if os.getenv('HBNB_API_HOST'):
         bnb_host = os.getenv('HBNB_API_HOST')
