@@ -9,6 +9,8 @@ from models import storage
 from models.user import User
 from models.place import Place
 from models.review import Review
+from models.state import State
+from models.city import City
 
 
 @app_views.route("/users", methods=['GET'], strict_slashes=False)
