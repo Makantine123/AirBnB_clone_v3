@@ -8,7 +8,7 @@ from api.v1.views import app_views
 from models import storage
 from models.state import State
 from models.city import City
-from models.amenities import Amenity
+from models.amenity import Amenity
 
 
 @app_views.route("/amenities", methods=['GET'], strict_slashes=False)
