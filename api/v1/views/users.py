@@ -5,19 +5,15 @@ Users module app
 
 from flask import jsonify, make_response, abort, request
 from api.v1.views import app_views
-from models import storage
 from models.user import User
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.city import City
+from models import storage
 
 
 @app_views.route("/users", methods=['GET'], strict_slashes=False)
 def get_users():
     """Gets all user objects in storage"""
-    users = storage.all(User).values()
-    user_list = [user.to_dict() for user in users]
+    all_users = storage.all(User).values()
+    user_list = [user.to_dict() for user in all_users]
     return make_response(jsonify(user_list))
 
 
@@ -74,5 +70,5 @@ def update_user(user_id):
     for key, value in req.items():
         if key not in ignored_keys:
             setattr(user, key, value)
-    user.save()
+    storage.save()
     return make_response(jsonify(user.to_dict()), 200)
