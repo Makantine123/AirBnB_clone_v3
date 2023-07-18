@@ -5,8 +5,8 @@ Users module app
 
 from flask import jsonify, make_response, abort, request
 from api.v1.views import app_views
-from models.user import User
 from models import storage
+from models.user import User
 
 
 @app_views.route("/users", methods=['GET'], strict_slashes=False)
