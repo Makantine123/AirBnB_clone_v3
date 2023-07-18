@@ -22,7 +22,7 @@ def get_users():
 def get_user(user_id):
     """Returns user object using id"""
     user = storage.get(User, user_id)
-    if not user:
+    if user is None:
         abort(404)
     return make_response(jsonify(user.to_dict()))
 
